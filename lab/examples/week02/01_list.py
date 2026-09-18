@@ -64,3 +64,4 @@ for name in indicators:             # 목록의 값을 하나씩 이름에 담�
 indicators = ['예산', '생산량', '수율', '순도', '안전지수']
 
 # 1)
+indicators[-2:]
