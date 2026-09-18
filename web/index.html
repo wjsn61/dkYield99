@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>dkYield99% - 화학공정 타이쿤</title>
+  <!-- 폰트: 로컬 번들 (오프라인) - Do Hyeon + Pretendard + JetBrains Mono -->
+  <link rel="stylesheet" href="/vendor/fonts/fonts.css" />
+  <link rel="stylesheet" href="/styles/main.css?v=3" />
+  <link rel="stylesheet" href="/styles/panels.css?v=1" />
+  <!-- Three.js (로컬 번들, 오프라인) -->
+  <script type="importmap">
+  { "imports": {
+      "three": "/vendor/three/three.module.js",
+      "three/addons/": "/vendor/three/addons/"
+  } }
+  </script>
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- ══════════════ 타이틀 화면 ══════════════ -->
+  <section id="title-screen" class="screen title-screen is-active">
+    <canvas id="title-canvas"></canvas>
+    <div class="title-vignette" aria-hidden="true"></div>
+    <div class="title-content">
+      <div class="title-kicker reveal" style="--d:0">턴제 화학공정 타이쿤 · 공정 최적화 시뮬레이션</div>
+      <h1 class="title-logo reveal" style="--d:1">dkYield<span>99%</span></h1>
+      <p class="title-sub reveal" style="--d:2">생산은 오늘의 돈을 만들고, <b>R&amp;D는 내일의 공정을 만든다.</b></p>
+
+      <div class="scenario-card reveal" style="--d:3">
+        <div class="scenario-tag">시나리오 01 · DK ChemTech</div>
+        <h2 id="scenario-name">Ester-1 Plant</h2>
+        <div class="reaction" id="scenario-reaction">초산 + 에탄올 ⇌ 초산에틸 + 물</div>
+        <p id="scenario-desc"></p>
+        <div class="scenario-stats" id="scenario-stats"></div>
+        <ul class="scenario-goals" id="scenario-goals"></ul>
+      </div>
+
+      <button id="start-btn" class="btn-primary btn-xl reveal" style="--d:4">
+        <span class="btn-glow"></span>
+        <span class="btn-label">공정 가동하기</span>
+        <span class="btn-arrow">▶</span>
+      </button>
+      <div class="title-foot reveal" style="--d:5">Python 권위형 서버 · JS · 공정 시뮬레이션</div>
+    </div>
+  </section>
+
+  <!-- ══════════════ 게임 화면 ══════════════ -->
+  <section id="game-screen" class="screen game-screen">
+    <header class="hud">
+      <div class="hud-brand">
+        <span class="hud-logo">dkYield<i>99%</i></span>
+        <div class="hud-term">
+          <span id="hud-month" class="hud-month">1개월차</span>
+          <span id="hud-tech" class="hud-tech">기술력 10</span>
+        </div>
+      </div>
+      <div class="hud-stats" id="hud-stats"></div>
+      <div class="hud-actions">
+        <div class="turn-pill"><span id="turn-now">1</span><i>/ 12개월</i></div>
+        <button id="end-turn-btn" class="btn-primary">
+          <span class="btn-label">생산 실행</span>
+          <span class="btn-sub">한 달 진행</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="board">
+      <!-- 공정 플로우시트 -->
+      <div class="panel flow-panel">
+        <div class="panel-head">
+          <h3>공정 플로우시트 <em>Ester-1</em></h3>
+          <div class="flow-reaction">초산 + 에탄올 ⇌ 초산에틸 + 물</div>
+        </div>
+        <div class="flow-stage">
+          <div id="flowsheet"></div>
+          <div id="vitality-badge" class="vitality-badge">가동 -</div>
+          <button id="reset-view-btn" class="fs-reset" title="초기 시점으로 되돌리기">⌂ 초기 뷰</button>
+          <div id="flow-tip" class="flow-tip"></div>
+          <div id="floaters" class="floaters"></div>
+        </div>
+      </div>
+
+      <!-- 카드 패널 -->
+      <aside class="panel card-panel">
+        <div class="panel-head">
+          <h3>공정 카드</h3>
+          <div class="card-filter" id="card-filter"></div>
+        </div>
+        <div class="rnd-strip" id="rnd-strip"></div>
+        <div class="card-list" id="card-list"></div>
+      </aside>
+    </main>
+
+    <footer class="dock">
+      <div class="panel chart-panel">
+        <div class="panel-head">
+          <h3>공정 지표 추이</h3>
+          <div class="chart-legend" id="chart-legend"></div>
+          <div class="dock-tools">
+            <button id="stats-btn" class="tool-btn tool-accent" title="지금까지의 조업 기록을 통계로 분석해 봅니다">
+              📊 통계 지표 보기
+            </button>
+            <button id="saves-btn" class="tool-btn" title="판을 저장하고 불러옵니다">
+              💾 저장 · 불러오기
+            </button>
+          </div>
+        </div>
+        <canvas id="chart-canvas"></canvas>
+      </div>
+      <div class="panel log-panel">
+        <div class="panel-head"><h3>운전 로그</h3><span class="log-hint">어떤 조작이 어떤 지표를 바꿨는지</span></div>
+        <div class="log-list" id="log-list"></div>
+      </div>
+    </footer>
+  </section>
+
+  <!-- 결과 모달 -->
+  <div id="result-modal" class="modal-backdrop">
+    <div class="modal result-modal">
+      <div class="result-glow" id="result-glow"></div>
+      <div class="result-kicker">12개월 운영 종료 · 최종 평가</div>
+      <div class="result-grade" id="result-grade">A</div>
+      <div class="result-title" id="result-title">-</div>
+      <p class="result-desc" id="result-desc"></p>
+      <div class="result-breakdown" id="result-breakdown"></div>
+      <button id="replay-btn" class="btn-primary btn-xl"><span class="btn-label">다시 도전</span></button>
+    </div>
+  </div>
+
+<!-- ══════════════════ 통계 지표 다이얼로그 ══════════════════ -->
+  <div id="stats-modal" class="modal-backdrop">
+    <div class="modal wide-modal">
+      <header class="wm-head">
+        <div>
+          <div class="wm-kicker">여기 숫자는 참고표입니다 - 직접 코딩해 계산하고, 맞는지 의심해 보세요</div>
+          <h2 class="wm-title">통계 지표 보기</h2>
+          <p class="wm-sub" id="stats-meta">-</p>
+        </div>
+        <div class="wm-head-actions">
+          <button id="stats-csv-btn" class="tool-btn" title="이 판의 조업 기록을 CSV로 내려받아 엑셀에서 열어 봅니다">
+            📥 엑셀용 CSV
+          </button>
+          <button id="stats-close" class="wm-close" aria-label="닫기">✕</button>
+        </div>
+      </header>
+
+      <nav class="wm-tabs" id="stats-tabs"></nav>
+      <div class="wm-body" id="stats-body"></div>
+
+      <!-- 근거 문헌 -->
+      <section class="wm-refs">
+        <h4>이 해석은 어디서 왔나요 - 근거 문헌</h4>
+        <p class="wm-refs-hint">
+          "선생님이 그렇게 말했으니까"가 아니라 출처를 확인하는 것이
+          데이터로 일하는 사람의 기본입니다. 캡스톤 보고서에는 최소 한 건을 인용하세요.
+        </p>
+        <div id="stats-refs"></div>
+      </section>
+    </div>
+  </div>
+
+  <!-- ══════════════════ 저장 · 불러오기 다이얼로그 ══════════════════ -->
+  <div id="saves-modal" class="modal-backdrop">
+    <div class="modal wide-modal">
+      <header class="wm-head">
+        <div>
+          <div class="wm-kicker">여러분의 운전이 곧 조업 데이터셋입니다</div>
+          <h2 class="wm-title">저장 · 불러오기</h2>
+          <p class="wm-sub">
+            판마다 <b>성공 / 실패</b> 라벨을 붙여 두세요.
+            나중에 두 무리를 통계로 비교하게 됩니다.<br />
+            저장하면 <b>같은 이름의 CSV</b>가 <code>lab\data\</code> 에 함께 만들어집니다 -
+            <b>이름을 알아보기 쉽게</b> 지으세요.
+          </p>
+        </div>
+        <button id="saves-close" class="wm-close" aria-label="닫기">✕</button>
+      </header>
+
+      <section class="save-form">
+        <input id="save-name" type="text" placeholder="판 이름 (예: 고순도 운전 1차)" maxlength="40" />
+        <select id="save-label">
+          <option value="미정">라벨: 미정</option>
+          <option value="성공">라벨: 성공</option>
+          <option value="실패">라벨: 실패</option>
+        </select>
+        <input id="save-memo" type="text" placeholder="메모 (무엇을 시도했나요?)" maxlength="80" />
+        <button id="save-now-btn" class="btn-primary"><span class="btn-label">지금 상태 저장</span></button>
+      </section>
+
+      <div class="save-tools">
+        <button id="samples-btn" class="tool-btn tool-accent"
+                title="잘 운전한 공장과 잘못 운전한 공장을 자동으로 만들어 줍니다">
+          🧪 예시 데이터 만들기
+        </button>
+        <button class="tool-btn" data-export="wide">📥 합본 CSV (턴별)</button>
+        <button class="tool-btn" data-export="summary">📥 판별 요약 CSV</button>
+        <button class="tool-btn" data-export="long">📥 긴 형식 CSV</button>
+        <button id="compare-btn" class="tool-btn tool-accent">⚖ 성공 vs 실패 비교</button>
+      </div>
+
+      <div id="compare-result" class="compare-result"></div>
+      <div class="save-list" id="save-list"></div>
+    </div>
+  </div>
+
+    <div id="toast" class="toast"></div>
+  <script type="module" src="/src/app.js?v=2"></script>
+</body>
+</html>

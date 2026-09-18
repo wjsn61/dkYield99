@@ -1,0 +1,25 @@
+/* dkYield99 - local fonts (fully offline, no CDN) */
+
+/* Pretendard (body) - variable font: covers Korean + Latin, weights 100-900 */
+@font-face{
+  font-family:'Pretendard';font-style:normal;font-weight:100 900;font-display:swap;
+  src:url('./PretendardVariable.woff2') format('woff2');
+}
+
+/* Do Hyeon (display) - Latin subset */
+@font-face{
+  font-family:'Do Hyeon';font-style:normal;font-weight:400;font-display:swap;
+  src:url('./dohyeon-latin-400.woff2') format('woff2');
+  unicode-range:U+0000-024F,U+2000-206F,U+2074,U+20AC,U+2122,U+2212;
+}
+/* Do Hyeon (display) - Korean subset */
+@font-face{
+  font-family:'Do Hyeon';font-style:normal;font-weight:400;font-display:swap;
+  src:url('./dohyeon-korean-400.woff2') format('woff2');
+  unicode-range:U+1100-11FF,U+3000-303F,U+3130-318F,U+A960-A97F,U+AC00-D7A3,U+D7B0-D7FF;
+}
+
+/* JetBrains Mono (numbers / monospace) */
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400;font-display:swap;src:url('./jetbrainsmono-latin-400.woff2') format('woff2');}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:500;font-display:swap;src:url('./jetbrainsmono-latin-500.woff2') format('woff2');}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:700;font-display:swap;src:url('./jetbrainsmono-latin-700.woff2') format('woff2');}

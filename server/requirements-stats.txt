@@ -1,0 +1,24 @@
+# 통계 실습(12주 그림 그리기 · 셀 단위 실행)에 필요한 파이썬 패키지
+#
+# 설치:  프로젝트 폴더의  install_stats.bat  을 더블클릭
+#        (또는)  python -m pip install -r requirements-stats.txt
+#
+# ※ 게임 실행에는 필요 없습니다.
+#    server/requirements.txt (fastapi·uvicorn·pydantic) 만 있으면 게임은 돕니다.
+#    이 파일은 lab/w12_chart.py 와 VS Code 셀 실행(# %%)에만 필요합니다.
+#
+# ※ 버전 상한을 두는 이유:
+#    학기 중간에 새 메이저 버전이 나와 실습이 깨지는 일을 막기 위해서입니다.
+numpy>=1.26,<3
+matplotlib>=3.8,<4
+
+# pandas 는 '맛보기'용입니다. 없어도 12주 실습은 됩니다.
+pandas>=2.2,<3
+
+# VS Code 에서 # %% 셀을 Shift+Enter 로 돌리려면 필요합니다.
+#
+# ※ 주피터 노트북(.ipynb)을 쓰려는 것이 아닙니다.
+#   파일은 그대로 평범한 .py 로 두고, 탐색할 때만 셀 단위로 돌립니다.
+#   .ipynb 는 실행 순서가 뒤죽박죽이어도 돌아가서, 이 과목의 평가 기준
+#   (재현성)과 정면으로 부딪힙니다. 자세한 이유는 docs/TOOLS.md 참고.
+ipykernel>=6.29,<7

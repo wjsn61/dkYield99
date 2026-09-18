@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>dkYield99% 주차별 상세 교육 내용 · Python × 화학공학</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<style>
+:root{
+  --bg-0:#050c0b;--bg-1:#081312;--panel:#0e1f1d;--line:rgba(86,150,140,.16);--line-b:rgba(86,150,140,.3);
+  --text:#e6f2ee;--muted:#7d9b94;--faint:#4f6b64;--teal:#2fe0c8;--teal-b:#74f4e2;--amber:#ffb049;--amber-b:#ffce86;
+  --blue:#4db6ff;--violet:#b08cff;--green:#8ae65c;--rose:#ff5765;
+  --c-py:#4db6ff;--c-dom:#2fe0c8;--c-lab:#ffb049;--c-stat:#b08cff;
+  --fd:"Do Hyeon",sans-serif;--fb:"Pretendard",system-ui,sans-serif;--fm:"JetBrains Mono",monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);color:var(--text);line-height:1.65;background:radial-gradient(1000px 700px at 85% -10%,rgba(47,224,200,.09),transparent 60%),linear-gradient(180deg,var(--bg-1),var(--bg-0));background-attachment:fixed}
+a{color:inherit}
+.layout{display:grid;grid-template-columns:248px 1fr;max-width:1240px;margin:0 auto}
+.side{position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;padding:22px 16px;border-right:1px solid var(--line)}
+.side .brand{font-family:var(--fd);font-size:21px;color:var(--text)}
+.side .brand span{color:var(--teal)}
+.side .sub{font:600 10px/1.4 var(--fm);letter-spacing:.12em;color:var(--faint);text-transform:uppercase;margin-bottom:16px}
+.side .back{display:inline-block;font-size:12px;color:var(--muted);text-decoration:none;margin-bottom:14px;border:1px solid var(--line);border-radius:7px;padding:5px 9px}
+.side .back:hover{color:var(--text);border-color:var(--line-b)}
+.side nav{display:flex;flex-direction:column;gap:2px}
+.side nav a{display:flex;gap:9px;align-items:center;padding:7px 9px;border-radius:8px;text-decoration:none;font-size:13px;color:var(--muted);transition:.15s}
+.side nav a:hover{background:rgba(255,255,255,.04);color:var(--text)}
+.side nav a.exam{color:var(--rose)}
+.side nav a .wn{font:700 11px/1 var(--fm);color:var(--amber);min-width:30px}
+.side::-webkit-scrollbar{width:7px}.side::-webkit-scrollbar-thumb{background:rgba(86,150,140,.18);border-radius:8px}
+.main{padding:34px 40px 120px;min-width:0}
+.head{margin-bottom:28px}
+.head .eye{font:600 12px/1 var(--fm);letter-spacing:.28em;text-transform:uppercase;color:var(--teal);margin-bottom:12px}
+.head h1{font-family:var(--fd);font-size:clamp(30px,4vw,44px);line-height:1.05}
+.head h1 .ac{color:var(--amber)}
+.head p{color:var(--muted);margin-top:10px;max-width:720px}
+.legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:16px}
+.legend .l{font-size:12.5px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.legend .l i{width:10px;height:10px;border-radius:3px}
+.week{border:1px solid var(--line);border-radius:16px;background:rgba(14,31,29,.55);padding:24px 26px;margin-bottom:22px;scroll-margin-top:18px}
+.week.exam{background:rgba(255,87,101,.05);border-color:rgba(255,87,101,.25)}
+.wk-top{display:flex;align-items:center;gap:14px;margin-bottom:4px}
+.wk-no{font-family:var(--fd);font-size:30px;color:var(--amber);line-height:1}
+.week.exam .wk-no{color:var(--rose)}
+.wk-tag{font:600 10px/1 var(--fm);letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--line);border-radius:999px;padding:4px 9px}
+.wk-title{font-size:21px;font-weight:800;margin:6px 0 14px}
+.goal{display:flex;gap:10px;background:rgba(47,224,200,.07);border:1px solid rgba(47,224,200,.22);border-radius:10px;padding:12px 14px;margin-bottom:18px;font-size:14.5px}
+.goal b{color:var(--teal-b)}
+.goal>svg{width:18px;height:18px;flex:0 0 auto;stroke:var(--teal);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;margin-top:1px}
+.wk-file svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;vertical-align:-2px;margin-right:3px}
+.concepts{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-bottom:16px}
+.concept{border-left:3px solid var(--cc);background:rgba(255,255,255,.02);border-radius:0 10px 10px 0;padding:12px 14px}
+.concept .ch{font:600 11px/1 var(--fm);letter-spacing:.06em;text-transform:uppercase;color:var(--cc);margin-bottom:7px}
+.concept h4{font-size:14.5px;margin-bottom:5px}
+.concept p{font-size:13px;color:var(--muted)}
+.concept code{font-family:var(--fm);font-size:12px;color:var(--amber-b);background:rgba(255,176,73,.1);padding:1px 5px;border-radius:4px}
+pre{background:#04100e;border:1px solid var(--line);border-radius:10px;padding:14px 16px;overflow-x:auto;margin:6px 0 16px}
+pre .cap{display:block;font:600 11px/1 var(--fm);color:var(--faint);text-transform:uppercase;letter-spacing:.1em;margin-bottom:9px}
+pre code{font-family:var(--fm);font-size:13px;color:#cfe7e2;line-height:1.7;white-space:pre}
+pre code .c{color:#4f6b64}pre code .k{color:#b08cff}pre code .s{color:#8ae65c}pre code .n{color:#ffce86}
+.row2{display:grid;grid-template-columns:1.3fr 1fr;gap:14px;margin-bottom:6px}
+@media(max-width:900px){.row2{grid-template-columns:1fr}}
+.practice h5,.hw h5{font:600 11px/1 var(--fm);letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:8px}
+.hw h5{color:var(--green)}
+.practice ol{margin-left:18px;font-size:13.5px}.practice li{margin-bottom:5px}
+.hw{background:rgba(138,230,92,.06);border:1px solid rgba(138,230,92,.2);border-radius:10px;padding:13px 15px;font-size:13.5px}
+.wk-file{margin-top:14px;font:600 12px/1.5 var(--fm);color:var(--amber-b)}
+.wk-file span{color:var(--faint);font-weight:500}
+@media(max-width:820px){.layout{grid-template-columns:1fr}.side{position:static;height:auto;border-right:none;border-bottom:1px solid var(--line)}.side nav{display:grid;grid-template-columns:repeat(3,1fr)}.concepts{grid-template-columns:1fr}.main{padding:24px 20px 80px}}
+.steps{border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-bottom:14px}
+.s-row{display:grid;grid-template-columns:92px 1fr;gap:12px;padding:10px 14px;font-size:13.5px;border-top:1px solid var(--line)}
+.s-row:first-child{border-top:none}
+.s-k{font:600 11px/1.6 var(--fm);letter-spacing:.06em;color:var(--blue)}
+.s-row code{font-family:var(--fm);font-size:12.5px;color:var(--gold-b);word-break:break-all}
+.s-row.ask{background:rgba(155,140,255,.06)}.s-row.ask .s-k{color:var(--violet)}
+.examnote{background:rgba(255,93,108,.07);border:1px solid rgba(255,93,108,.25);border-radius:10px;padding:12px 14px;margin-bottom:16px;font-size:13.5px}
+.examnote b{color:var(--rose)}
+.limit{margin-top:13px;font-size:12.5px;color:var(--faint);border-left:2px solid var(--line);padding-left:10px;line-height:1.65}
+@media(max-width:620px){.s-row{grid-template-columns:1fr;gap:4px}}
+.exbox{border:1px solid rgba(88,220,139,.28);background:rgba(88,220,139,.05);
+  border-radius:12px;padding:12px 15px;margin:0 0 14px}
+.exbox h5{font:600 11px/1 var(--fm);letter-spacing:.1em;text-transform:uppercase;
+  color:var(--green,#8ae65c);margin-bottom:9px}
+.exbox .path{font-family:var(--fm);font-size:11.5px;color:var(--faint);margin-bottom:8px}
+.exlist{display:grid;gap:6px}
+.exrow{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:baseline;font-size:13px}
+.exrow code{font-family:var(--fm);font-size:12px;color:var(--gold-b,#ffce86);white-space:nowrap}
+.exrow .d{color:var(--muted)}
+.exbox .hint{margin-top:9px;font-size:12px;color:var(--muted);line-height:1.6}
+.exbox .hint b{color:var(--text)}
+@media(max-width:620px){.exrow{grid-template-columns:1fr;gap:2px}}
+</style>
+</head>
+<body>
+<div class="layout">
+  <aside class="side">
+    <div class="brand">dkYield<span>99%</span></div>
+    <div class="sub">주차별 상세 교육</div>
+    <a class="back" href="index.html">← 강의계획 요약으로</a>
+    <nav id="toc"></nav>
+  </aside>
+  <main class="main">
+    <div class="head">
+      <div class="eye">화학공학과 2학기 · 15주 워크북</div>
+      <h1>주차별 <span class="ac">상세 교육 내용</span></h1>
+      <p>매주 <b>Python 문법 · 화학공학 개념 · dkYield99% 실습</b>을 함께 배웁니다. 각 주차는 학습 목표 → 핵심 개념 → 코드 예시 → 실습 → 과제 순으로 구성됩니다.</p>
+      <div class="legend" id="legend"></div>
+    </div>
+    <div id="weeks"></div>
+  </main>
+</div>
+
+<script src="weeks.data.js"></script>
+<script src="examples.index.js"></script>
+<script>
+const D = window.DK_CURRICULUM, WEEKS = D.weeks, L = D.labels;
+
+const TRACK_COLOR = { 토대:"var(--blue)", 로직:"var(--gold)", 시스템:"var(--teal)",
+                      데이터:"var(--green)", 판단:"var(--violet)", 통합:"var(--violet)", 평가:"var(--rose)" };
+
+document.getElementById("legend").innerHTML =
+  [["--c-py",L.py],["--c-dom",L.dom],["--c-lab",L.lab],["--c-stat",L.stat]]
+  .map(([v,t])=>`<span class="l"><i style="background:var(${v})"></i>${t}</span>`).join("");
+
+const short = t => { const s = t.split(" · ")[0]; return s.length>15 ? s.slice(0,14)+"…" : s; };
+document.getElementById("toc").innerHTML = WEEKS.map(w=>
+  `<a href="#w${w.w}" class="${w.l==="EXAM"?'exam':''}"><span class="wn">${w.w}주</span>${short(w.title)}</a>`).join("");
+
+const concept = (v,tag,o) => o
+  ? `<div class="concept" style="--cc:var(${v})"><div class="ch">${tag}</div><h4>${o.h}</h4><p>${o.b}</p></div>` : "";
+
+const doing = w => w.steps
+  ? `<div class="steps">
+      <div class="s-row"><span class="s-k">수정 파일</span><span>${w.steps.edit}</span></div>
+      <div class="s-row"><span class="s-k">실행 명령</span><code>${w.steps.run}</code></div>
+      <div class="s-row"><span class="s-k">예상 결과</span><span>${w.steps.expect}</span></div>
+      <div class="s-row ask"><span class="s-k">해석 질문</span><span>${w.steps.ask}</span></div>
+     </div>
+     <div class="hw"><h5>과제</h5>${w.hw}</div>`
+  : `<div class="row2">
+      <div class="practice"><h5>실습 단계</h5><ol>${(w.practice||[]).map(p=>`<li>${p}</li>`).join("")}</ol></div>
+      <div class="hw"><h5>과제</h5>${w.hw}</div>
+     </div>`;
+
+document.getElementById("weeks").innerHTML = WEEKS.map(w=>`
+  <section class="week ${w.l==="EXAM"?'exam':''}" id="w${w.w}">
+    <div class="wk-top"><span class="wk-no">${w.w}</span><span class="wk-tag" style="color:${TRACK_COLOR[w.track]};border-color:var(--line)">${w.l==="EXAM"?'중간·기말':w.track}</span></div>
+    <div class="wk-title">${w.title}</div>
+    <div class="goal"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg><div><b>학습 목표</b> - ${w.goal}</div></div>
+    <div class="exbox-slot"></div>
+    ${w.l==="EXAM"?`<div class="examnote"><b>평가</b> - ${w.exam}</div>`:""}
+    <div class="concepts">
+      ${concept("--c-py",  L.py,   w.py)}
+      ${concept("--c-dom", L.dom,  w.dom)}
+      ${concept("--c-lab", L.lab,  w.lab)}
+      ${concept("--c-stat",L.stat, w.stat)}
+    </div>
+    <pre><span class="cap">${w.code.cap}</span><code>${w.code.html}</code></pre>
+    ${doing(w)}
+    <div class="wk-file"><svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><polyline points="14 3 14 8 19 8"/></svg>${w.file.split(" ")[0]} <span>${w.file}</span></div>
+    <div class="limit">⚠ ${D.limitNote}</div>
+  </section>`).join("");
+// ── 그 주의 예제 파일 (lab/examples/weekNN/) ────────────────────
+//    examples.index.js 가 먼저 실려 있습니다. 없으면 조용히 건너뜁니다.
+//    (fetch 를 쓰지 않는 이유: 파일을 더블클릭해 열면 file:// 이라 막힙니다)
+const EX = window.DK_EXAMPLES || {};
+paintExamples();
+
+function paintExamples() {
+  for (const [week, files] of Object.entries(EX)) {
+    const host = document.querySelector(`#w${week} .exbox-slot`);
+    if (!host || !files.length) continue;
+    const nn = String(week).padStart(2, "0");
+    host.innerHTML = `
+      <div class="exbox">
+        <h5>이 주의 예제 파일</h5>
+        <div class="path">lab / examples / week${nn} /  · 번호 순서로 여세요</div>
+        <div class="exlist">
+          ${files.map(f => `<div class="exrow"><code>${f.파일}</code>
+             <span class="d">${f.제목}</span></div>`).join("")}
+        </div>
+        <div class="hint">
+          VS Code 에서 <code># %%</code> 아래에 커서를 두고 <b>Shift+Enter</b> -
+          그 칸만 실행됩니다. 파일 맨 아래에 <b>퀴즈</b>가 있고,
+          정답은 <code>lab/answers/week${nn}/</code> 에 따로 있습니다.
+        </div>
+      </div>`;
+  }
+}
+
+</script>
+
+</body>
+</html>

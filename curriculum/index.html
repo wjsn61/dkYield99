@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>dkYield99% 교육과정 · Python × 화학공학</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<style>
+:root{
+  --bg-0:#050c0b; --bg-1:#081312; --bg-2:#0d1d1b;
+  --panel:rgba(13,28,26,.66); --line:rgba(86,150,140,.16); --line-b:rgba(86,150,140,.30);
+  --text:#e6f2ee; --muted:#7d9b94; --faint:#4f6b64;
+  --teal:#2fe0c8; --teal-b:#74f4e2; --amber:#ffb049; --amber-b:#ffce86;
+  --blue:#4db6ff; --violet:#b08cff; --green:#8ae65c; --red:#ff5765;
+  --c-py:#4db6ff;    /* Python */
+  --c-chem:#2fe0c8;  /* 화학공학 */
+  --c-game:#ffb049;  /* dkYield 실습 */
+  --c-stat:#b08cff;  /* 데이터·통계 */
+  --r:14px; --rs:9px;
+  --fd:"Do Hyeon",sans-serif; --fb:"Pretendard",-apple-system,system-ui,sans-serif; --fm:"JetBrains Mono",ui-monospace,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;
+  background:radial-gradient(1100px 760px at 80% -8%,rgba(47,224,200,.10),transparent 60%),radial-gradient(900px 680px at 8% 12%,rgba(255,176,73,.08),transparent 55%),linear-gradient(180deg,var(--bg-1),var(--bg-0));background-attachment:fixed}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+section{padding:82px 0}
+.eyebrow{font:600 12px/1 var(--fm);letter-spacing:.3em;text-transform:uppercase;color:var(--teal);margin-bottom:16px}
+h2.sec{font-family:var(--fd);font-size:clamp(30px,4.6vw,46px);line-height:1.05}
+h2.sec .ac{color:var(--amber)}
+.sec-sub{color:var(--muted);margin-top:14px;max-width:680px;font-size:16px}
+
+.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:rgba(5,12,11,.7);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:62px}
+.nav .logo{font-family:var(--fd);font-size:23px;color:var(--text)}
+.nav .logo span{color:var(--teal)}
+.nav ul{list-style:none;display:flex;gap:24px}
+.nav a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:600;transition:.2s}
+.nav a:hover{color:var(--text)}
+@media(max-width:780px){.nav ul{display:none}}
+
+.hero{padding:92px 0 60px;text-align:center}
+.hero .badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:24px}
+.badge{font:600 12px/1 var(--fm);color:var(--teal-b);background:rgba(47,224,200,.1);border:1px solid rgba(47,224,200,.28);padding:7px 13px;border-radius:999px}
+.badge.a{color:var(--amber-b);background:rgba(255,176,73,.1);border-color:rgba(255,176,73,.28)}
+.badge.b{color:var(--blue);background:rgba(77,182,255,.1);border-color:rgba(77,182,255,.28)}
+.hero h1{font-family:var(--fd);font-size:clamp(40px,7.4vw,82px);line-height:1.02;padding-top:.06em}
+.hero h1 .g{color:var(--teal)}
+.hero .lead{margin:22px auto 0;max-width:720px;color:var(--muted);font-size:clamp(16px,2vw,20px)}
+.hero .lead b{color:var(--text)}
+.hero .meta{margin-top:32px;display:flex;gap:28px;justify-content:center;flex-wrap:wrap}
+.hero .meta .m .k{font-size:12px;color:var(--faint)} .hero .meta .m .v{font:700 21px/1.2 var(--fm);color:var(--text);margin-top:4px}
+.reaction{margin-top:26px;font:700 17px/1 var(--fm);color:var(--amber-b)}
+
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
+.pillar{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:26px 24px;position:relative;overflow:hidden}
+.pillar::before{content:"";position:absolute;inset:0 auto 0 0;width:4px;background:var(--pc)}
+.pillar .ico{color:var(--pc);height:32px;display:flex;align-items:center}
+.pillar .ico svg,.tool .i svg,.cb-ic svg{stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.pillar .ico svg{width:30px;height:30px}
+.cb-ic{display:inline-flex;color:var(--cbc)}.cb-ic svg{width:19px;height:19px}
+.pillar h3{font-size:20px;margin:14px 0 8px;font-weight:800}
+.pillar p{color:var(--muted);font-size:14.5px}
+.pillar .pc-tag{font:600 11px/1 var(--fm);letter-spacing:.1em;color:var(--pc);text-transform:uppercase;margin-top:14px;display:inline-block}
+.synth{margin-top:18px;background:linear-gradient(135deg,rgba(47,224,200,.08),rgba(255,176,73,.06));border:1px solid var(--line-b);border-radius:var(--r);padding:26px 28px;text-align:center}
+.synth h3{font-size:clamp(20px,2.6vw,26px);font-weight:800}
+.synth h3 .g{color:var(--amber)} .synth h3 .t{color:var(--teal)}
+.synth p{color:var(--muted);margin-top:10px;max-width:760px;margin-inline:auto}
+.courses{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.courses .c{font-size:12.5px;color:var(--muted);background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:999px;padding:6px 12px}
+.courses .c b{color:var(--teal)}
+@media(max-width:780px){.pillars{grid-template-columns:1fr}}
+
+.goals{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:18px}
+.goal{display:flex;gap:14px;background:var(--panel);border:1px solid var(--line);border-radius:var(--rs);padding:18px 20px}
+.goal .n{font:800 18px/1 var(--fm);color:var(--amber);flex:0 0 auto}
+.goal h4{font-size:16px;margin-bottom:4px} .goal p{color:var(--muted);font-size:14px}
+@media(max-width:780px){.goals{grid-template-columns:1fr}}
+
+.legend{display:flex;gap:18px;flex-wrap:wrap;margin:20px 0 8px}
+.legend .l{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:7px}
+.legend .l i{width:11px;height:11px;border-radius:3px}
+
+.module{margin-top:40px}
+.module-head{display:flex;align-items:baseline;gap:14px;padding-bottom:14px;border-bottom:1px solid var(--line);margin-bottom:18px}
+.module-head .mno{font:800 13px/1 var(--fm);letter-spacing:.18em;color:var(--violet);text-transform:uppercase}
+.module-head h3{font-size:22px;font-weight:800} .module-head .span{margin-left:auto;font:500 12px/1 var(--fm);color:var(--faint)}
+.weeks{display:flex;flex-direction:column;gap:12px}
+.week{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;display:grid;grid-template-columns:64px 1fr;gap:18px;transition:.2s}
+.week:hover{border-color:var(--line-b);transform:translateY(-2px);box-shadow:0 12px 30px rgba(0,0,0,.3)}
+.week .wno{text-align:center}
+.week .wno .w{font:800 26px/1 var(--fm);color:var(--text)} .week .wno .l{font-size:11px;color:var(--faint);margin-top:4px}
+.week .body h4{font-size:17px;font-weight:800;margin-bottom:12px}
+.week .tracks{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.track{border-left:3px solid var(--tc);background:rgba(255,255,255,.02);border-radius:0 8px 8px 0;padding:10px 12px}
+.track .th{font:600 10.5px/1 var(--fm);letter-spacing:.08em;color:var(--tc);text-transform:uppercase;margin-bottom:6px}
+.track p{font-size:13px;color:var(--text);opacity:.92}
+.track.exam{grid-column:1/-1;border-color:var(--red);background:rgba(255,87,101,.06)}
+.track.exam .th{color:var(--red)}
+.wfile{margin-top:12px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;padding-top:11px;border-top:1px dashed var(--line)}
+.wfile .ff{font:600 12.5px/1.4 var(--fm);color:var(--amber-b);background:rgba(255,176,73,.08);border:1px solid rgba(255,176,73,.22);padding:4px 9px;border-radius:7px;white-space:nowrap}
+.wfile .fex{font-size:13px;color:var(--muted)}
+@media(max-width:780px){.week{grid-template-columns:1fr}.week .wno{display:flex;gap:10px;align-items:baseline}.week .tracks{grid-template-columns:1fr}.wfile .ff{white-space:normal}}
+
+.codebase{margin-top:20px;display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.cb-group{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:20px 22px}
+.cb-group h3{font-size:16px;font-weight:800;display:flex;align-items:center;gap:9px;margin-bottom:4px}
+.cb-group h3 .tag{font:600 10px/1 var(--fm);letter-spacing:.1em;color:var(--cbc);background:color-mix(in srgb,var(--cbc) 14%,transparent);border:1px solid color-mix(in srgb,var(--cbc) 30%,transparent);padding:4px 8px;border-radius:999px;text-transform:uppercase}
+.cb-group>p{color:var(--faint);font-size:12.5px;margin-bottom:14px}
+.cb-file{display:flex;gap:12px;padding:10px 0;border-top:1px solid var(--line)}
+.cb-file .fn{font:600 12.5px/1.5 var(--fm);color:var(--amber-b);flex:0 0 auto;min-width:0}
+.cb-file .fd{font-size:13px;color:var(--muted)}
+.cb-file .edit{font:600 10px/1 var(--fm);color:var(--green);border:1px solid rgba(138,230,92,.3);background:rgba(138,230,92,.08);padding:3px 6px;border-radius:5px;margin-left:6px;white-space:nowrap}
+@media(max-width:780px){.codebase{grid-template-columns:1fr}.cb-file{flex-direction:column;gap:3px}}
+
+.assess{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:18px}
+.ass{background:var(--panel);border:1px solid var(--line);border-radius:var(--rs);padding:18px 16px;text-align:center}
+.ass .pct{font-family:var(--fd);font-size:36px;color:var(--amber);line-height:1}
+.ass .nm{font-size:13.5px;font-weight:700;margin-top:8px} .ass .ds{font-size:11.5px;color:var(--muted);margin-top:4px}
+@media(max-width:780px){.assess{grid-template-columns:repeat(2,1fr)}}
+
+.project{background:linear-gradient(135deg,rgba(255,176,73,.07),rgba(176,140,255,.06));border:1px solid var(--line-b);border-radius:var(--r);padding:32px;margin-top:18px}
+.project h3{font-size:24px;font-weight:800}
+.project .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:22px}
+.step .sn{font:800 13px/1 var(--fm);color:var(--violet)} .step h4{font-size:15px;margin:8px 0 4px} .step p{font-size:13px;color:var(--muted)}
+@media(max-width:780px){.project .steps{grid-template-columns:1fr 1fr}}
+
+.tools{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}
+.tool{background:var(--panel);border:1px solid var(--line);border-radius:var(--rs);padding:18px;display:flex;gap:12px;align-items:center}
+.tool .i{color:var(--teal);display:flex} .tool .i svg{width:24px;height:24px} .tool .nm{font-weight:700;font-size:15px} .tool .ds{font-size:12px;color:var(--muted)}
+@media(max-width:780px){.tools{grid-template-columns:1fr 1fr}}
+
+footer{border-top:1px solid var(--line);padding:40px 0;text-align:center;color:var(--faint);font:500 12px/1.8 var(--fm)}
+footer .lg{font-family:var(--fd);font-size:20px;color:var(--teal);margin-bottom:8px}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.reveal.in{opacity:1;transform:none}
+.week .tracks{grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+.safety{max-width:920px;margin:0 auto 34px;padding:16px 20px;border:1px solid rgba(255,93,108,.28);
+  background:rgba(255,93,108,.06);border-radius:12px;font-size:13.5px;line-height:1.75;color:var(--muted)}
+.safety b{color:#ff8a95}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <div class="logo">dkYield<span>99%</span> · 교육과정</div>
+    <ul>
+      <li><a href="#concept">개념</a></li>
+      <li><a href="#goals">목표</a></li>
+      <li><a href="#curriculum">15주 커리큘럼</a></li>
+      <li><a href="weeks.html">주차별 상세</a></li>
+      <li><a href="#codebase">소스코드</a></li>
+      <li><a href="#assess">평가</a></li>
+      <li><a href="#project">기말 프로젝트</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="badges reveal">
+      <span class="badge">2학기 전공과목</span>
+      <span class="badge a">화학공학과 대상</span>
+      <span class="badge b">15주 · 주 3시간</span>
+    </div>
+    <h1 class="reveal">공정 타이쿤으로 배우는<br><span class="g">Python × 화학공학</span></h1>
+    <p class="lead reveal">반응기 온도 한 칸의 선택이 수율과 안전을 가른다.<br>
+      <b>Python을 배우면서, 데이터를 스스로 만들고<br>그 숫자를 직접 계산해 의심할 줄 아는 엔지니어가 된다.</b><br>
+      <span style="font-size:.86em">AI 시대에 대체되지 않는 엔지니어는, 그런 사람이다.</span></p>
+    <div class="reaction reveal">초산 + 에탄올 ⇌ 초산에틸 + 물</div>
+    <div class="meta reveal">
+      <div class="m"><div class="k">학수 구분</div><div class="v">전공선택</div></div>
+      <div class="m"><div class="k">학점</div><div class="v">3학점</div></div>
+      <div class="m"><div class="k">선수지식</div><div class="v">불필요</div></div>
+      <div class="m"><div class="k">실습 플랫폼</div><div class="v">dkYield99%</div></div>
+    </div>
+  </div>
+</header>
+
+<section id="concept">
+  <div class="wrap">
+    <div class="eyebrow reveal">신개념 교육</div>
+    <h2 class="sec reveal">게임 · 코드 · 공정이 <span class="ac">하나의 수업</span>으로</h2>
+    <p class="sec-sub reveal">화공 교재의 공식을, 직접 코드로 만들고 게임으로 돌려보며 체득합니다. 세 축이 맞물려 돌아갑니다.</p>
+    <div class="pillars">
+      <div class="pillar reveal" style="--pc:var(--c-game)">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M9 3h6M10 3v5l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3"/><line x1="7.5" y1="14" x2="16.5" y2="14"/></svg></div><h3>타이쿤 게임</h3>
+        <p>화학공정 타이쿤 dkYield99%를 운영하며 수율·순도·비용·안전·환경이 맞물리는 공정 생태계를 체감합니다.</p>
+        <span class="pc-tag">체험 · 동기부여</span>
+      </div>
+      <div class="pillar reveal" style="--pc:var(--c-py)">
+        <div class="ico"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><h3>Python</h3>
+        <p>변수·조건문·반복문·함수를 공정 카드와 시뮬레이션을 직접 만들며 배웁니다. ‘공정을 움직이는 코드’로.</p>
+        <span class="pc-tag">컴퓨팅 사고</span>
+      </div>
+      <div class="pillar reveal" style="--pc:var(--c-chem)">
+        <div class="ico"><svg viewBox="0 0 24 24"><polygon points="12 3 19 7.5 19 16.5 12 21 5 16.5 5 7.5"/><circle cx="12" cy="12" r="3"/></svg></div><h3>화학공학</h3>
+        <p>수율·전환율·선택도, 반응·분리, 공정안전, 환경규제, R&amp;D 사업화를 게임 속 의사결정으로 경험합니다.</p>
+        <span class="pc-tag">공정 사고</span>
+      </div>
+    </div>
+    <div class="synth reveal">
+      <h3>코드로 <span class="g">공정</span>을 설계하고, 게임으로 <span class="t">수율</span>을 최적화한다</h3>
+      <p>Python으로 운전·설비·R&amp;D 카드를 만들고, 게임을 돌려 그 선택이 수율·순도·안전에 어떤 결과를 낳는지 데이터로 확인합니다. 정답 없는 트레이드오프 속에서 ‘수율 99%에 가까운 최적 공정’을 스스로 찾습니다.</p>
+    </div>
+    <div class="courses reveal">
+      <span class="c"><b>화공양론</b> 물질수지·수율</span>
+      <span class="c"><b>반응공학</b> 전환율·선택도</span>
+      <span class="c"><b>열역학</b> 평형·온도/압력</span>
+      <span class="c"><b>분리공정</b> 증류·환류비·순도</span>
+      <span class="c"><b>공정제어</b> 변동성·안정성</span>
+      <span class="c"><b>공정안전</b> 열폭주·압력위험</span>
+      <span class="c"><b>환경공학</b> 폐수·VOC·규제</span>
+      <span class="c"><b>공정설계</b> 설비투자·경제성</span>
+    </div>
+  </div>
+</section>
+
+<section id="goals">
+  <div class="wrap">
+    <div class="eyebrow reveal">학습 목표</div>
+    <h2 class="sec reveal">이 수업을 마치면 <span class="ac">할 수 있는 것</span></h2>
+    <div class="goals" id="goals-grid"></div>
+  </div>
+</section>
+
+<section id="curriculum">
+  <div class="wrap">
+    <div class="eyebrow reveal">주차별 커리큘럼</div>
+    <h2 class="sec reveal">15주 <span class="ac">상세 강의 계획</span></h2>
+    <p class="sec-sub reveal">매주 네 트랙이 함께 진행됩니다 - Python 문법, 전공 개념, 게임 실습, 그리고 9주부터 더해지는 <b>데이터·통계</b>입니다.</p>
+    <div class="legend reveal" id="track-legend"></div>
+    <div id="modules"></div>
+  </div>
+</section>
+
+<section id="codebase">
+  <div class="wrap">
+    <div class="eyebrow reveal">실습 소스코드</div>
+    <h2 class="sec reveal">수업에서 다루는 <span class="ac">실제 코드</span></h2>
+    <p class="sec-sub reveal">교재가 아니라, 실제로 동작하는 dkYield99%의 소스코드를 그대로 교보재로 사용합니다. <span style="color:var(--green)">편집</span> 표시는 학생이 직접 고치며 배우는 파일입니다.</p>
+    <div class="codebase" id="codebase-grid"></div>
+  </div>
+</section>
+
+<section id="assess">
+  <div class="wrap">
+    <div class="eyebrow reveal">평가 방법</div>
+    <h2 class="sec reveal">성적 <span class="ac">평가 비중</span></h2>
+    <p class="sec-sub reveal">시험 암기가 아니라, 직접 만든 공정과 그 시뮬레이션 결과로 평가합니다.</p>
+    <div class="assess" id="assess-grid"></div>
+  </div>
+</section>
+
+<section id="project">
+  <div class="wrap">
+    <div class="eyebrow reveal">기말 프로젝트</div>
+    <h2 class="sec reveal">나만의 <span class="ac">공정·카드팩</span> 설계</h2>
+    <div class="project reveal">
+      <h3>“수율 99%에 도전하라” - 공정 시뮬레이션 캡스톤</h3>
+      <p class="sec-sub" style="margin-top:12px">학생은 자신만의 공정 시나리오와 카드팩(운전·설비·R&amp;D 8~10종)을 Python으로 설계하고, dkYield99%로 12개월 운영을 시뮬레이션해 결과를 공정 보고서로 제출·발표합니다.</p>
+      <div class="steps">
+        <div class="step"><div class="sn">STEP 1</div><h4>공정 진단</h4><p>해결할 문제 정의 (저수율·낮은 순도·높은 에너지비)</p></div>
+        <div class="step"><div class="sn">STEP 2</div><h4>카드 설계</h4><p>cards_data.py에 카드팩 작성 · 효과/부작용/시너지 균형</p></div>
+        <div class="step"><div class="sn">STEP 3</div><h4>시뮬레이션</h4><p>12개월 운영 · 수율·순도·이익·안전 추이 분석</p></div>
+        <div class="step"><div class="sn">STEP 4</div><h4>공정 보고서</h4><p>의사결정 근거와 트레이드오프를 발표 · 동료 토론</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="tools">
+  <div class="wrap">
+    <div class="eyebrow reveal">수업 환경</div>
+    <h2 class="sec reveal">필요한 <span class="ac">도구</span></h2>
+    <div class="tools">
+      <div class="tool"><div class="i"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><div><div class="nm">Python 3.10+</div><div class="ds">설치 1회, 코딩 입문</div></div></div>
+      <div class="tool"><div class="i"><svg viewBox="0 0 24 24"><path d="M8 3H7a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2 2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h1"/><path d="M16 3h1a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2 2 2 0 0 0-2 2v4a2 2 0 0 1-2 2h-1"/></svg></div><div><div class="nm">VS Code</div><div class="ds">코드 편집기 (무료)</div></div></div>
+      <div class="tool"><div class="i"><svg viewBox="0 0 24 24"><path d="M9 3h6M10 3v5l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3"/><line x1="7.5" y1="14" x2="16.5" y2="14"/></svg></div><div><div class="nm">dkYield99%</div><div class="ds">실습 게임 플랫폼</div></div></div>
+      <div class="tool"><div class="i"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="3" y1="12" x2="21" y2="12"/><path d="M12 3a14 14 0 0 1 0 18 14 14 0 0 1 0-18"/></svg></div><div><div class="nm">웹 브라우저</div><div class="ds">게임 실행 · 결과 확인</div></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="safety">
+  <b>⚠ 안전 고지</b> - 이 교육과정과 게임은 <b>교육용 단순 모형</b>입니다.
+  반응 속도·열물질수지·안전 한계를 크게 단순화했으므로 <b>실제 플랜트 운전·설계·안전 판단에 사용하지 마세요.</b>
+  수업에서 얻은 수치는 이 모형 안에서만 참이며, 실제 현장의 값이나 인과를 그대로 말해 주지 않습니다.
+  학생이 배우는 것은 정답인 숫자가 아니라, <b>숫자를 만들고 · 계산하고 · 의심하는 방법</b>입니다.
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="lg">dkYield99%</div>
+    AI시대 화학공정 타이쿤 · Python × 화학공학 융합 교육과정<br>
+    화학공학과 2학기 전공선택 · 15주 강의계획서
+  </div>
+</footer>
+
+<script src="weeks.data.js"></script>
+<script>
+// ── 주차 데이터는 weeks.data.js 하나에서 옵니다 ────
+const D = window.DK_CURRICULUM, L = D.labels;
+const GOALS = D.goals, ASSESS = D.assess;
+const MODULES = (()=>{ const out=[], seen=new Map();
+  for(const w of D.weeks){
+    if(!seen.has(w.mno)){ const m={mno:w.mno,title:w.mtitle,span:w.mspan,weeks:[]}; seen.set(w.mno,m); out.push(m); }
+    seen.get(w.mno).weeks.push(w);
+  } return out; })();
+
+document.getElementById("track-legend").innerHTML =
+  [["--c-py",L.py],["--c-pa",L.dom],["--c-game",L.lab],["--c-stat",L.stat]]
+  .map(([v,t])=>`<span class="l"><i style="background:var(${v})"></i>${t}</span>`).join("");
+
+const CODEBASE = [
+  { tag:"CARDS", color:"var(--c-game)", icon:'<svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>', title:"공정 카드 묶음", desc:"server/app/cards/ - 학생이 카드를 만들고 고치는 핵심 영역",
+    files:[
+      ["cards_data.py","운전·설비·R&D 카드 20장을 딕셔너리로 정의",true],
+      ["card_schema.py","카드 규칙 검사·한국어 오류 안내",false],
+      ["__init__.py","검증된 카드를 엔진에 전달(load_cards)",false],
+      ["README.md","코드를 몰라도 카드를 편집하는 초보자 안내서",false]]},
+  { tag:"ENGINE", color:"var(--c-py)", icon:'<svg viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="2" x2="9" y2="5"/><line x1="15" y1="2" x2="15" y2="5"/><line x1="9" y1="19" x2="9" y2="22"/><line x1="15" y1="19" x2="15" y2="22"/><line x1="2" y1="9" x2="5" y2="9"/><line x1="2" y1="15" x2="5" y2="15"/><line x1="19" y1="9" x2="22" y2="9"/><line x1="19" y1="15" x2="22" y2="15"/></svg>', title:"공정 엔진", desc:"server/app/engine/ - 카드를 받아 공정을 계산하는 두뇌(파이썬 기초 총집합)",
+    files:[
+      ["process_engine.py › new_plant()","공정 지표 변수 초기 정의",false],
+      ["apply_effect()","효과 적용 for 반복 + if 조건",false],
+      ["enact_card()","예산·설비 조건 if로 시행 판단",false],
+      ["calculate_yield()","수율=전환율×선택도×회수율 함수",true],
+      ["end_turn()·evaluate_ending()","월 정산·최종 등급 평가",false]]},
+  { tag:"SERVER", color:"var(--c-chem)", icon:'<svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="7" rx="1.5"/><rect x="2" y="13" width="20" height="7" rx="1.5"/><line x1="6" y1="7.5" x2="6.01" y2="7.5"/><line x1="6" y1="16.5" x2="6.01" y2="16.5"/></svg>', title:"게임 서버", desc:"server/ - Python 권위형 서버(디지털 트윈 개념 학습)",
+    files:[
+      ["app/main.py","FastAPI API(새 공정·카드·턴 종료)",false],
+      ["run.py","python run.py로 서버 실행(포트 5000)",false],
+      ["requirements.txt","설치 패키지 목록",false]]},
+  { tag:"LAB", color:"var(--c-stat)", icon:'<svg viewBox="0 0 24 24"><path d="M9 3v6l-5 9a2 2 0 0 0 1.8 3h12.4a2 2 0 0 0 1.8-3l-5-9V3"/><line x1="8" y1="3" x2="16" y2="3"/><line x1="7" y1="15" x2="17" y2="15"/></svg>', title:"데이터 실습실", desc:"lab/ - 9주부터 학생이 직접 데이터를 만들고 계산하는 곳",
+    files:[
+      ["w12_basic.py","평균·표준편차·변동계수를 직접 구현 (빈 함수 채우기)",true],
+      ["check.py","무엇이 왜 틀렸는지 한국어로 알려주는 채점기",false],
+      ["run_batch.py","시드를 바꿔 여러 판을 자동 실행 → CSV",false],
+      ["w12_chart.py","matplotlib 그림 1장 + pandas 맛보기",true],
+      ["data/*.csv","저장한 판과 같은 이름으로 쌓이는 분석 재료",false],
+    ]},
+  { tag:"WEB", color:"var(--violet)", icon:'<svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>', title:"게임 화면", desc:"web/ - 브라우저에 그려지는 3D 프론트엔드(주로 읽기)",
+    files:[
+      ["src/flowsheet.js","Three.js 3D 공정 플로우시트",false],
+      ["src/game.js","지표·카드·로그를 화면에 표시",false],
+      ["src/charts.js","수율·순도·이익 추이 차트",false],
+      ["src/three-mol.js","타이틀 분자 네트워크 배경",false]]},
+];
+const STEPS_NONE=null;
+
+document.getElementById("goals-grid").innerHTML = GOALS.map(([n,t,d])=>
+  `<div class="goal reveal"><div class="n">${n}</div><div><h4>${t}</h4><p>${d}</p></div></div>`).join("");
+document.getElementById("assess-grid").innerHTML = ASSESS.map(([p,n,d])=>
+  `<div class="ass reveal"><div class="pct">${p}</div><div class="nm">${n}</div><div class="ds">${d}</div></div>`).join("");
+
+const fileLine = (w)=> w.file
+  ? `<div class="wfile"><span class="ff"><svg style="width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;vertical-align:-1px;margin-right:4px" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><polyline points="14 3 14 8 19 8"/></svg>${w.file}</span><span class="fex">${w.explain||""}</span></div>` : "";
+const trackBox = (v,tag,txt)=> txt
+  ? `<div class="track" style="--tc:var(${v})"><div class="th">${tag}</div><p>${txt}</p></div>` : "";
+
+document.getElementById("modules").innerHTML = MODULES.map(m=>{
+  const weeks = m.weeks.map(w=>{
+    const s = w.short || {};
+    const body = w.exam
+      ? `<div class="track exam"><div class="th">중간·기말</div><p>${s.exam||w.exam}</p></div>`
+      : trackBox("--c-py",L.py,s.py) + trackBox("--c-pa",L.dom,s.dom)
+      + trackBox("--c-game",L.lab,s.lab) + trackBox("--c-stat",L.stat,s.stat);
+    return `<div class="week reveal"><div class="wno"><div class="w">${w.w}</div><div class="l">${w.l}</div></div>
+      <div class="body"><h4>${w.title}</h4><div class="tracks">${body}</div>${fileLine(w)}</div></div>`;
+  }).join("");
+  return `<div class="module"><div class="module-head">
+      <span class="mno">${m.mno}</span><h3>${m.title}</h3><span class="span">${m.span}</span>
+    </div><div class="weeks">${weeks}</div></div>`;
+}).join("");
+
+const io = new IntersectionObserver((es)=>{ es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target);} }); },{threshold:.12});
+document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
